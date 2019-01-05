@@ -39,13 +39,13 @@ impl Hitable for Sphere {
         let discriminant = b * b - 4. * a * c;
 
         if discriminant > 0. {
-            let temp = (-b - discriminant.sqrt()) / (2. * a);
+            let temp = (-b - discriminant.sqrt()) / a;
             if temp < t_max && temp > t_min {
                 hit_record.t = temp;
                 hit_record.p = r.point_at_parameter(hit_record.t);
                 hit_record.normal = (hit_record.p - self.center) / self.radius;
+                return true;
             }
-            return true;
         }
 
         return false;
